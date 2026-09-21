@@ -34,14 +34,14 @@ jobs:
           gradle-version: "8.13"
 
       - name: Unzip project
-        run: unzip -q TimeBank-Android-v0.1-source.zip
+        run: unzip -q TimeBank-Android-v0.2-source.zip
 
       - name: Build APK
-        working-directory: TimeBank-Android-v0.1
+        working-directory: TimeBank-Android-v0.2
         run: gradle :app:assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: TimeBank-v0.1-debug
-          path: TimeBank-Android-v0.1/app/build/outputs/apk/debug/app-debug.apk
+          name: TimeBank-v0.2-debug
+          path: TimeBank-Android-v0.2/app/build/outputs/apk/debug/app-debug.apk
