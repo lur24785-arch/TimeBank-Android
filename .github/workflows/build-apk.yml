@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'TimeBank-Android-v0.5-source.zip'
+      - 'TimeBank-Android-v0.7-source.zip'
       - '.github/workflows/build-apk.yml'
 
 permissions:
@@ -39,7 +39,7 @@ jobs:
           gradle-version: '8.13'
 
       - name: Extract source
-        run: unzip -q TimeBank-Android-v0.5-source.zip -d source
+        run: unzip -q TimeBank-Android-v0.7-source.zip -d source
 
       - name: Restore existing debug signing key (optional)
         env:
@@ -51,12 +51,12 @@ jobs:
           fi
 
       - name: Test and build APK
-        working-directory: source/TimeBank-Android-v0.5
+        working-directory: source/TimeBank-Android-v0.7
         run: gradle --no-daemon :app:testDebugUnitTest :app:assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: TimeBank-v0.5-debug
-          path: source/TimeBank-Android-v0.5/app/build/outputs/apk/debug/app-debug.apk
+          name: TimeBank-v0.7-debug
+          path: source/TimeBank-Android-v0.7/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
